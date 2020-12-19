@@ -1,5 +1,10 @@
 from bs4 import BeautifulSoup
+from datetime import datetime
+import colorama
+from colorama import Fore, Back, Style
 import requests
+
+colorama.init(autoreset=True)
 
 newegg_products = {
     "Newegg Ryzen 5 5600x": "https://www.newegg.com/amd-ryzen-5-5600x/p/N82E16819113666?Description=ryzen&cm_re=ryzen-_-19-113-666-_-Product",
@@ -13,6 +18,10 @@ amazon_products = {
     "Amazon Ryzen 7 5800x": "https://www.amazon.com/AMD-Ryzen-5800X-16-Thread-Processor/dp/B0815XFSGK?ref_=ast_sto_dp",
     "Amazon Ryzen 9 5900x": "https://www.amazon.com/Ryzen-5900X-12-Core-Desktop-Processor/dp/B08NXYLBN5/ref=sr_1_3?dchild=1&keywords=ryzen+9+5900x&qid=1608348416&s=electronics&sr=1-3",
     "Amazon Ryzen 9 5950x": "https://www.amazon.com/AMD-Ryzen-5950X-32-Thread-Processor/dp/B0815Y8J9N?ref_=ast_sto_dp"
+}
+
+bestbuy_products = {
+
 }
 
 
@@ -44,14 +53,25 @@ def findAmazonStock(url):
         return(1)
 
 
-for key in newegg_products:
-    if findNeweggStock(newegg_products[key]) == 0:
-        print(key, "Out of Stock")
-    else:
-        print(key, "In Stock")
+repeat = True
+while repeat == True:
+    for key in newegg_products:
+        if findNeweggStock(newegg_products[key]) == 0:
+            now = datetime.now()
+            print(key, "Out of Stock", Fore.RED + "  UPDATED:",
+                  now.strftime("%m/%d/%Y %H:%M:%S"))
+        else:
+            now = datetime.now()
+            print(key, "In Stock", Fore.RED + "  UPDATED:",
+                  now.strftime("%m/%d/%Y %H:%M:%S"))
 
-for key in amazon_products:
-    if findAmazonStock(amazon_products[key]) == 0:
-        print(key, "Out of Stock")
-    else:
-        print(key, "In stock")
+    for key in amazon_products:
+        if findAmazonStock(amazon_products[key]) == 0:
+            now = datetime.now()
+            print(key, "Out of Stock", Fore.RED + "  UPDATED:",
+                  now.strftime("%m/%d/%Y %H:%M:%S"))
+        else:
+            now = datetime.now()
+            print(key, "In stock", Fore.RED + "  UPDATED:",
+                  now.strftime("%m/%d/%Y %H:%M:%S"))
+    repeat = True
