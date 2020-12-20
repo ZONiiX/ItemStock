@@ -1,5 +1,4 @@
 from requests_html import HTMLSession
-import pandas as pd
 
 newegg_products = ['https://www.newegg.com/amd-ryzen-5-5600x/p/N82E16819113666?Description=ryzen&cm_re=ryzen-_-19-113-666-_-Product', 'https://www.newegg.com/amd-ryzen-7-5800x/p/N82E16819113665?Description=ryzen%205700&cm_re=ryzen_5700-_-19-113-665-_-Product',
                    'https://www.newegg.com/amd-ryzen-9-5900x/p/N82E16819113664?Description=ryzen%205700&cm_re=ryzen_5700-_-19-113-664-_-Product', 'https://www.newegg.com/amd-ryzen-9-5900x/p/N82E16819113664?Description=ryzen%205700&cm_re=ryzen_5700-_-19-113-664-_-Product', 'https://www.newegg.com/black-msi-gl-series-gl75-10sfk-029-gaming-entertainment/p/N82E16834155401?Item=N82E16834155401&cm_sp=homepage_dailydeals-_-p2_34-155-401-_-12192020&quicklink=true']

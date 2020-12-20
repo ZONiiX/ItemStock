@@ -1,10 +1,7 @@
 from requests_html import HTMLSession
-import pandas as pd
 
 bestbuy_products = ['https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943', 'https://www.bestbuy.com/site/amd-ryzen-7-5800x-4th-gen-8-core-16-threads-unlocked-desktop-processor-without-cooler/6439000.p?skuId=6439000',
                     'https://www.bestbuy.com/site/amd-ryzen-9-5900x-4th-gen-12-core-24-threads-unlocked-desktop-processor-without-cooler/6438942.p?skuId=6438942', 'https://www.bestbuy.com/site/amd-ryzen-9-5950x-4th-gen-16-core-32-threads-unlocked-desktop-processor-without-cooler/6438941.p?skuId=6438941']
-
-#newegg_products = ['https://www.newegg.com/black-msi-gl-series-gl75-10sfk-029-gaming-entertainment/p/N82E16834155401?Item=N82E16834155401&cm_sp=homepage_dailydeals-_-p2_34-155-401-_-12192020&quicklink=true']
 
 
 def getBestBuyStock(url, header):
