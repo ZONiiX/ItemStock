@@ -23,6 +23,7 @@ def getNeweggStock(url):
 
     return product
 
-
-for url in newegg_products:
-    getNeweggStock(url)
+def loopNeweggStock():
+        for url in newegg_products:
+            getNeweggStock(url)
+    

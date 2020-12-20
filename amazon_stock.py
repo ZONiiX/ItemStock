@@ -26,8 +26,8 @@ def getAmazonStock(url, header):
 
     return product
 
-
-for url in amazon_products:
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
-    getAmazonStock(url, headers)
+def loopAmazonStock():
+        for url in amazon_products:
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
+            getAmazonStock(url, headers)
