@@ -4,25 +4,24 @@ from colorama import Fore, Back, Style
 
 colorama.init(autoreset=True)
 
-amazon_products = ['https://www.amazon.com/AMD-Ryzen-5600X-12-Thread-Processor/dp/B08166SLDF?ref_=ast_sto_dp', 'https://www.amazon.com/AMD-Ryzen-5800X-16-Thread-Processor/dp/B0815XFSGK?ref_=ast_sto_dp',
-                   'https://www.amazon.com/Ryzen-5900X-12-Core-Desktop-Processor/dp/B08NXYLBN5/ref=sr_1_3?dchild=1&keywords=ryzen+9+5900x&qid=1608348416&s=electronics&sr=1-3', 'https://www.amazon.com/AMD-Ryzen-5950X-32-Thread-Processor/dp/B0815Y8J9N?ref_=ast_sto_dp']
+amazon_products = open('Lists/amazonlist.txt').readlines()
 
 
 def getAmazonStock(url, header):
-    s = HTMLSession()
-    r = s.get(url, headers=header)
-    r.html.render(sleep=1)
+    session = HTMLSession()
+    result = session.get(url, headers=header)
+    result.html.render(sleep=1)
 
     try:
         product = {
-            'Amazon US': r.html.xpath('//*[@id="productTitle"]', first=True).text,
-            'Price': r.html.xpath('//*[@id="priceblock_ourprice"]', first=True).text,
-            'Stock': r.html.xpath('//*[@id="availability_feature_div"]', first=True).text
+            'Amazon US': result.html.xpath('//*[@id="productTitle"]', first=True).text,
+            'Price': result.html.xpath('//*[@id="priceblock_ourprice"]', first=True).text,
+            'Stock': result.html.xpath('//*[@id="availability_feature_div"]', first=True).text
         }
     except:
         product = {
-            'Amazon US': r.html.xpath('//*[@id="productTitle"]', first=True).text,
-            'Price': 'Unavailable',
+            'Amazon US': result.html.xpath('//*[@id="productTitle"]', first=True).text,
+            'Price': 'Price unavailable',
             'Stock': '*Out of stock*'
         }
 
@@ -34,16 +33,16 @@ def getAmazonStock(url, header):
     StylizedPrice = ''
     StylizedProduct = ''
 
-    if product['Price'] == 'Unavailable' and product['Stock'] == '*Out of stock*':
+    if product['Price'] == 'Price unavailable' and product['Stock'] == '*Out of stock*':
         StylizedPrice = Fore.RED + Style.BRIGHT + product["Price"]
         StylizedProduct = Fore.RED + Style.BRIGHT + product["Stock"]
-    elif product['Price'] != 'Unavailable' and product['Stock'] != "*Out of stock*":
+    elif product['Price'] != 'Price unavailable' and product['Stock'] != "*Out of stock*":
         StylizedPrice = Fore.GREEN + Style.BRIGHT + product["Price"]
         StylizedProduct = Fore.GREEN + Style.BRIGHT + product["Stock"]
-    elif product['Price'] == 'Unavailable' and product['Stock'] != "*Out of stock*":
+    elif product['Price'] == 'Price unavailable' and product['Stock'] != "*Out of stock*":
         StylizedPrice = Fore.RED + Style.BRIGHT + product["Price"]
         StylizedProduct = Fore.GREEN + Style.BRIGHT + product["Stock"]
-    elif product['Price'] != 'Unavailable' and product['Stock'] == '*Out of stock*':
+    elif product['Price'] != 'Price unavailable' and product['Stock'] == '*Out of stock*':
         StylizedPrice = Fore.GREEN + Style.BRIGHT + product["Price"]
         StylizedProduct = Fore.RED + Style.BRIGHT + product["Stock"]
 
